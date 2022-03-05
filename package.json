@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "mindustry-schematic-parser": "^4.1.4",
+    "canvas": "^2.9.0",
+    "pako": "^2.0.4",
+    "pkg-dir": "^6.0.1"
+  }
+}
