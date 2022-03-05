@@ -1,4 +1,6 @@
-const parser = require('./parser');
+const { Schematic } = require('mindustry-schematic-parser');
+const discord = require('discord.js');
+const bot = new discord.Client({ intents: [ discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES ] });
 
 let icons = {
     copper: '<:copper:908397525772402798>',
@@ -71,7 +73,9 @@ bot.on('messageCreate', async msg => {
 
                     msg.channel.send({ embeds: [ embed ], files: [ discordImage ] });
                 })
-        } catch(e){}
+        } catch(e){
+            console.log(e)
+        }
     }
 })
 
