@@ -1,5 +1,6 @@
 const { Schematic } = require('mindustry-schematic-parser');
 const discord = require('discord.js');
+const fetch = require('node-fetch');
 const bot = new discord.Client({ intents: [ discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES ] });
 
 let icons = {
@@ -33,7 +34,12 @@ bot.on('messageCreate', async msg => {
     if(msg.author.bot)return;
     if(msg.channel.type === "dm")return;
 
-    const base64 = msg.content
+    let base64 = msg.content
+
+    if(msg.attachments.first() && msg.attachments.first().name === 'message.txt'){
+        let data = await fetch(msg.attachments.first().url);
+        base64 = await data.text();
+    }
 
     if(Buffer.from(base64, 'base64').toString('base64') === base64){
         try{
